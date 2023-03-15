@@ -15,6 +15,11 @@ namespace MethodToChaos
         {
             Top = Game.CurrentGame.Level.GetStartPosition().Top;
             Left = Game.CurrentGame.Level.GetStartPosition().Left;
+
+            // Print position on screen
+            Console.SetCursorPosition(0, 12);
+            Console.WriteLine("Position: " + Left + ", " + Top);
+
         }
 
         internal void MoveDown(int steps)

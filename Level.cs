@@ -9,6 +9,8 @@ namespace MethodToChaos
     internal class Level
     {
         public char[,] LevelArray;
+        int height = 11;
+        int width = 36;
         public Level()
         {
             string levelString =
@@ -25,7 +27,7 @@ namespace MethodToChaos
                 "=================================F==/";
 
             // Create a 2D char array
-            LevelArray = new char[36, 11];
+            LevelArray = new char[height, width];
 
             // Loop trough levelString, put each char in a cell of LevelArray
             int left = 0;
@@ -39,7 +41,7 @@ namespace MethodToChaos
                 }
                 else
                 {
-                    LevelArray[left, top] = c;
+                    LevelArray[top, left] = c;
                     left++;
                 }
             }
@@ -47,19 +49,17 @@ namespace MethodToChaos
         
         public void ShowLevel()
         {
-            {
-                // Clear screen
-                Console.Clear();
+            // Clear screen
+            Console.Clear();
 
-                // Loop trough LevelArray, print each char
-                for (int left = 0; left < 11; left++)
+            // Show the level on screen
+            for (int top = 0; top < height; top++)
+            {
+                for (int left = 0; left < width; left++)
                 {
-                    for (int top = 0; top < 36; top++)
-                    {
-                        Console.Write(LevelArray[top, left]);
-                    }
-                    Console.WriteLine();
+                    Console.Write(LevelArray[top, left]);
                 }
+                Console.WriteLine();
             }
         }
 
@@ -71,7 +71,7 @@ namespace MethodToChaos
                 {
                     for (int top = 0; top < 11; top++)
                     {
-                        if (LevelArray[left, top] == 'S')
+                        if (LevelArray[top, left] == 'S')
                         {
                             return new Position() { Left = left, Top = top };
                         }
@@ -85,11 +85,11 @@ namespace MethodToChaos
         {
             {
                 // Loop trough LevelArray, find the exit position
-                for (int left = 0; left < 36; left++)
+                for (int left = 0; left < width; left++)
                 {
-                    for (int top = 0; top < 11; top++)
+                    for (int top = 0; top < height; top++)
                     {
-                        if (LevelArray[left, top] == 'F')
+                        if (LevelArray[top, left] == 'F')
                         {
                             return new Position() { Left = left, Top = top };
                         }
