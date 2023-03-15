@@ -29,31 +29,28 @@ namespace MethodToChaos
                 // The player isn't at the exit.
                 // Ask for a new input.
                 string userInput = Console.ReadLine();
-
-                // Correct user inputs can be:
-                // MoveUp(x);, MoveDown(x);, MoveLeft(x);, MoveRight(x); with x the number of steps
-                // x can be any number between 1 and 10
-                // If the user input is not correct, the player doesn't move
-
-                // Check if the user wants to move up
-                if (userInput.StartsWith("MoveUp"))
+                if(ValidateInput(userInput))
                 {
-                    player.MoveUp(GetNumberOfSteps(userInput));
-                }
-                // Check if the user wants to move down
-                else if (userInput.StartsWith("MoveDown"))
-                {
-                    player.MoveDown(GetNumberOfSteps(userInput));
-                }
-                // Check if the user wants to move left
-                else if (userInput.StartsWith("MoveLeft"))
-                {
-                    player.MoveLeft(GetNumberOfSteps(userInput));
-                }
-                // Check if the user wants to move right
-                else if (userInput.StartsWith("MoveRight"))
-                {
-                    player.MoveRight(GetNumberOfSteps(userInput));
+                    // Check if the user wants to move up
+                    if (userInput.StartsWith("MoveUp"))
+                    {
+                        player.MoveUp(GetNumberOfSteps(userInput));
+                    }
+                    // Check if the user wants to move down
+                    else if (userInput.StartsWith("MoveDown"))
+                    {
+                        player.MoveDown(GetNumberOfSteps(userInput));
+                    }
+                    // Check if the user wants to move left
+                    else if (userInput.StartsWith("MoveLeft"))
+                    {
+                        player.MoveLeft(GetNumberOfSteps(userInput));
+                    }
+                    // Check if the user wants to move right
+                    else if (userInput.StartsWith("MoveRight"))
+                    {
+                        player.MoveRight(GetNumberOfSteps(userInput));
+                    }
                 }
                 else
                 {
@@ -61,7 +58,6 @@ namespace MethodToChaos
                     Console.WriteLine("Valid inputs can be: MoveUp(2);, MoveDown(7);, MoveLeft(4);, MoveRight(1);");
                     break;
                 }
-
             }
         }
 
@@ -77,6 +73,12 @@ namespace MethodToChaos
                 return number;
             }
             return 0;
+        }
+
+        public bool ValidateInput(string inputString)
+        {
+            Regex regex = new Regex(@"^Move(Up|Down|Left|Right)\(\d+\);$");
+            return regex.IsMatch(inputString);
         }
     }
 }
