@@ -56,7 +56,6 @@ namespace MethodToChaos
                 {
                     Console.WriteLine("Invalid input.");
                     Console.WriteLine("Valid inputs can be: MoveUp(2);, MoveDown(7);, MoveLeft(4);, MoveRight(1);");
-                    break;
                 }
             }
         }
